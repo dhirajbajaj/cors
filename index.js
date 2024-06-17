@@ -1,29 +1,24 @@
-const express = require('express');
+const fetch = require('node-fetch');
 
-const app = express();
+module.exports = async (req, res) => {
+  const { url } = req.query;
 
-// Replace '*' with your desired allowed origin(s)
-const allowedOrigin = '*';
+  if (!url) {
+    return res.status(400).json({ error: 'Missing required parameter: url' });
+  }
 
-app.get('*', (req, res) => {
-  const targetUrl = req.url.slice(1); // Remove leading slash
+  try {
+    // Fetch data from the target URL
+    const response = await fetch(url);
+    const data = await response.json(); // or response.text() for text responses
 
-  fetch(targetUrl)
-    .then(response => response.json())
-    .then(data => {
-      res.setHeader('Access-Control-Allow-Origin', allowedOrigin);
-      res.setHeader('Access-Control-Allow-Methods', 'GET');
-      res.setHeader('Access-Control-Allow-Headers', req.headers['content-type']); // Reflect original headers
-      res.json(data);
-    })
-    .catch(error => {
-      console.error(error);
-      res.status(500).send('Error fetching data');
-    });
-});
+    // Set CORS headers
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Content-Type', 'application/json');
 
-const port = process.env.PORT || 3000;
-
-app.listen(port, () => console.log(`Server listening on port ${port}`));
-
-module.exports = app;
+    // Return the fetched data as JSON
+    res.status(200).json(data);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to fetch data' });
+  }
+};
