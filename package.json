@@ -4,7 +4,7 @@
   "description": "super simple cors proxy forwarded with accept header deployed on vercel",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"  // Replace index.js with your entry file if different
+    "start": "node index.js"
   },
   "dependencies": {
     "express": "^4.17.2",
