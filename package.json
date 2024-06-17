@@ -1,0 +1,15 @@
+{
+  "name": "cors-proxy-vercel",
+  "version": "1.0.0",
+  "description": "super simple cors proxy forwarded with accept header deployed on vercel",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"  // Replace index.js with your entry file if different
+  },
+  "dependencies": {
+    "express": "^4.17.2",
+    "node-fetch": "^2.6.1"
+  },
+  "author": "Dhiraj Bajaj",
+  "license": "MIT"
+}
