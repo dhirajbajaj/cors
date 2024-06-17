@@ -1,6 +1,6 @@
 # cors forwarding proxy on vercel
 
-Here's a Node.js script you can deploy on Vercel to act as a CORS proxy server, adding the `Access-Control-Allow-Origin` header for GET requests:
+A simple Node.js script, you can deploy on Vercel to act as a CORS proxy server, adding the `Access-Control-Allow-Origin` header for GET requests: Feel free to clone and add your use-cases. 
 
 ```javascript
 const express = require('express');
